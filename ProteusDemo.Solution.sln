@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation.UI", "Presentation.UI", "{B44F96A8-0B35-4BE6-A476-96A323A686A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure.IoC", "Infrastructure.IoC", "{A78CC685-81C4-4793-8318-E79DFF09B77E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure.Data", "Infrastructure.Data", "{A405A810-3E08-437A-8CF8-76E0DF898136}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application.Core", "Application.Core", "{774182BA-0A00-43B1-8955-80D8AE7EDB00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain.Data", "Domain.Data", "{165EB170-E9F7-4A78-B46F-BD4E18D840CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proteus.Application", "Proteus.Application\Proteus.Application.csproj", "{0090DB28-9FC1-4129-99A9-3F7F7D7BB16B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0090DB28-9FC1-4129-99A9-3F7F7D7BB16B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0090DB28-9FC1-4129-99A9-3F7F7D7BB16B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0090DB28-9FC1-4129-99A9-3F7F7D7BB16B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0090DB28-9FC1-4129-99A9-3F7F7D7BB16B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0090DB28-9FC1-4129-99A9-3F7F7D7BB16B} = {774182BA-0A00-43B1-8955-80D8AE7EDB00}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D6C9124-F89F-45E1-BC84-B3527B749177}
+	EndGlobalSection
+EndGlobal
