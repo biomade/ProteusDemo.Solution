@@ -20,8 +20,9 @@
     "Proteus.Api": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "launchUrl": "api/course",
+      //"launchUrl": "weatherforecast",
+      "applicationUrl": "https://localhost:5003;http://localhost:5002",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
