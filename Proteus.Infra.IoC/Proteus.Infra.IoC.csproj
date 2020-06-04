@@ -8,4 +8,10 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Proteus.Application\Proteus.Application.csproj" />
+    <ProjectReference Include="..\Proteus.Infra.Bus\Proteus.Infra.Bus.csproj" />
+    <ProjectReference Include="..\Proteus.Infra.Data\Proteus.Infra.Data.csproj" />
+  </ItemGroup>
+
 </Project>
