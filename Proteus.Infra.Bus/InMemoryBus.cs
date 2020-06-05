@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Proteus.Application.ViewModels;
 using Proteus.Domain.Core.Bus;
 using Proteus.Domain.Core.Commands;
 using System;
@@ -21,5 +22,6 @@ namespace Proteus.Infra.Bus
         {
             return _mediator.Send(command);
         }
+
     }
 }

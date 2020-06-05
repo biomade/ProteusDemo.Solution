@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Proteus.Application\Proteus.Application.csproj" />
     <ProjectReference Include="..\Proteus.Domain.Core\Proteus.Domain.Core.csproj" />
   </ItemGroup>
 

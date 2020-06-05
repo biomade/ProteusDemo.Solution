@@ -23,7 +23,9 @@ namespace Proteus.Infra.IoC
             services.AddScoped<IMediatorHandler, InMemoryBus>();
 
             //Domain Handlers
-            services.AddScoped<IRequestHandler<CreateCourseCommand, bool>, CourseCommandHandler>();
+            services.AddScoped<IRequestHandler<CreateCourseCommand, bool>, CourseCreateCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateCourseCommand, bool>, CourseUpdateCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteCourseCommand, bool>, CourseDeleteCommandHandler>();
 
             //application layer
             services.AddScoped<ICourseService, CourseService>();

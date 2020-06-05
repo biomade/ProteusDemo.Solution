@@ -9,11 +9,10 @@ namespace Proteus.Application.Interfaces
     {
         //this VM returns an IEnumerable
         IEnumerable<CourseViewModel> GetCourses();
+
+        CourseViewModel GetCourse(CourseViewModel courseViewModel);
         void Create(CourseViewModel courseViewModel);
-
-
-        //void GetCourse(CourseViewModel courseViewModel);
-        //void Update(CourseViewModel courseViewModel);
-        //void Delete(CourseViewModel courseViewModel);
+        void Update(CourseViewModel courseViewModel);
+        void Delete(CourseViewModel courseViewModel);
     }
 }

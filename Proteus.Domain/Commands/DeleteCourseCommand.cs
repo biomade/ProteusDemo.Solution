@@ -1,10 +1,15 @@
-﻿using System;
+﻿using Proteus.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Proteus.Domain.Commands
 {
-    class DeleteCourseCommand
+    public class DeleteCourseCommand: CourseCommand
     {
+        public DeleteCourseCommand(int id)
+        {
+            Id = id;
+        }
     }
 }

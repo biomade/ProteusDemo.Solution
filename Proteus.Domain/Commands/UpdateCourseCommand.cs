@@ -4,7 +4,15 @@ using System.Text;
 
 namespace Proteus.Domain.Commands
 {
-    class UpdateCourseCommand
+    public class UpdateCourseCommand : CourseCommand
     {
+        public UpdateCourseCommand(int id, string name, string description, string imageUrl)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            ImageUrl = imageUrl;
+
+        }
     }
 }

@@ -11,7 +11,6 @@ namespace Proteus.Domain.Commands
             Name = name;
             Description = description;
             ImageUrl = imageUrl;
-
         }
     }
 }

@@ -12,9 +12,9 @@ namespace Proteus.Domain.Interfaces
 
         //create a base repo that has the add, update, delete methods
         void Add(Course course);
-        //GetCourse
-        //UpdateCourse
-        //DeleteCourse
+        Course GetCourse(int id);
+        void UpdateCourse(Course course);
+        void DeleteCourse(int id);
 
     }
 }

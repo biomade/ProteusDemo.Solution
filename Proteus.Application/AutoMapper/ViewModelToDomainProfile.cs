@@ -11,11 +11,15 @@ namespace Proteus.Application.AutoMapper
     {
         public ViewModelToDomainProfile()
         {
+            //one for each viewmodel
             CreateMap<CourseViewModel, CreateCourseCommand>()
                 .ConvertUsing(c => new CreateCourseCommand(c.Name, c.Description, c.ImageUrl));
-           
+            
+            CreateMap<CourseViewModel, UpdateCourseCommand>()
+               .ConvertUsing(c => new UpdateCourseCommand(c.Id, c.Name, c.Description, c.ImageUrl));
 
-            //one for each viewmodel
+            CreateMap<CourseViewModel, DeleteCourseCommand>()
+               .ConvertUsing(c => new DeleteCourseCommand(c.Id));
         }
     }
 }

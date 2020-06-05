@@ -4,6 +4,7 @@ using Proteus.Application.Interfaces;
 using Proteus.Application.ViewModels;
 using Proteus.Domain.Commands;
 using Proteus.Domain.Core.Bus;
+using Proteus.Domain.Entities;
 using Proteus.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -26,33 +27,38 @@ namespace Proteus.Application.Services
 
         public void Create(CourseViewModel courseViewModel)
         {
-            //uses mediatr command
-            //replaced with automapper
-            //var createCourseCommand = new CreateCourseCommand(
-            //    courseViewModel.Name,
-            //    courseViewModel.Descrption,
-            //    courseViewModel.ImageUrl
-            //    );
-            // _bus.SendCommand(createCourseCommand);
-
-
             _bus.SendCommand(_autoMapper.Map<CreateCourseCommand>(courseViewModel));
         }
 
         public IEnumerable<CourseViewModel> GetCourses()
         {
-            //NOTE: use Automapper to simplify this
-            //var courses = _CourseRepository.GetCourses();
-            //CourseViewModel coursesVM = (CourseViewModel)courses;
-            //return coursesVM;
-
-            //replaced with automapper
-            //return new CourseViewModel()
-            //{
-            //    Courses = _CourseRepository.GetCourses()
-            //};
-
             return _CourseRepository.GetCourses().ProjectTo<CourseViewModel>(_autoMapper.ConfigurationProvider);
+        }
+
+        public CourseViewModel GetCourse(CourseViewModel courseViewModel)
+        {
+            var course = _CourseRepository.GetCourse(courseViewModel.Id);
+            var coursevm = _autoMapper.Map<CourseViewModel>(course);
+            return coursevm;
+        }
+
+        public void Update(CourseViewModel courseViewModel)
+        {
+            //uses mediatr command
+           // replaced with automapper
+            //var updateCourseCommand = new UpdateCourseCommand(
+            //    courseViewModel.Id,
+            //    courseViewModel.Name,
+            //    courseViewModel.Description,
+            //    courseViewModel.ImageUrl
+            //    );
+            //_bus.SendCommand(updateCourseCommand);
+            _bus.SendCommand(_autoMapper.Map<UpdateCourseCommand>(courseViewModel));  
+        }
+
+        public void Delete(CourseViewModel courseViewModel)
+        {
+            _bus.SendCommand(_autoMapper.Map<DeleteCourseCommand>(courseViewModel));
         }
 
     }

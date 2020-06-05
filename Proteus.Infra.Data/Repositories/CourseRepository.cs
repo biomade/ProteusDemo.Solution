@@ -26,5 +26,26 @@ namespace Proteus.Infra.Data.Repositories
             _ctx.Courses.Add(course);
             _ctx.SaveChanges();
         }
+
+        public Course GetCourse(int id)
+        {
+            return _ctx.Courses.Where(c => c.Id == id).FirstOrDefault();
+        }
+
+        public void UpdateCourse(Course course)
+        {
+            _ctx.Courses.Update(course);
+            _ctx.SaveChanges();
+        }
+
+        public void DeleteCourse(int id)
+        {
+            Course course = new Course()
+            {
+                Id = id
+            };
+            _ctx.Courses.Remove(course);
+            _ctx.SaveChanges();
+        }
     }
 }

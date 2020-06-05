@@ -1,21 +1,51 @@
 ﻿@model IEnumerable<Proteus.Application.ViewModels.CourseViewModel>
 
-<div class="container body-content">
-    <div class="row body-content">
-        @foreach (var course in Model)
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Courses</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
         {
-            <div class="course-image-container">
-                <div class="course-image" style="background-image:url(@course.ImageUrl)">
-                </div>
-                <br /> <br />
-                <span>
-                    @course.Name
-                </span>
-                <br />
-                <span>
-                    @course.Description
-                </span>
-            </div>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageUrl)
+                    <br/>
+                    <div class="course-image" style="background-image:url(@item.ImageUrl)"></div>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
         }
-    </div>
-</div>
+    </tbody>
+</table>

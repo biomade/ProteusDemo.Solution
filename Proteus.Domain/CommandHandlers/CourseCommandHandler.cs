@@ -10,12 +10,13 @@ using System.Threading.Tasks;
 
 namespace Proteus.Domain.CommandHandlers
 {
-    public class CourseCommandHandler : IRequestHandler<CreateCourseCommand, bool>
+    //one for each CRUD opperation and update the Proteus.Infra.IoC.DependencyContainer to register it!!
+    public class CourseCreateCommandHandler : IRequestHandler<CreateCourseCommand, bool>
     {
         //add repo
         private readonly ICourseRepository _courseRepository;
 
-        public CourseCommandHandler(ICourseRepository courseRepository)
+        public CourseCreateCommandHandler(ICourseRepository courseRepository)
         {
             _courseRepository = courseRepository;
         }
@@ -34,5 +35,67 @@ namespace Proteus.Domain.CommandHandlers
 
             return Task.FromResult(true);
         }
+
+        public Task<bool> Handle(UpdateCourseCommand request, CancellationToken cancellationToken)
+        {
+            var existingItem = _courseRepository.GetCourse(request.Id);
+            //NOW UPDATE
+            existingItem.Description = request.Description;
+            existingItem.Name = request.Name;
+            existingItem.ImageUrl = request.ImageUrl;
+
+            //additional business logic goes here about who to notify that a course was added
+            _courseRepository.UpdateCourse(existingItem);
+
+            return Task.FromResult(true);
+        }
     }
+
+    public class CourseUpdateCommandHandler : IRequestHandler<UpdateCourseCommand, bool>
+    {
+        //add repo
+        private readonly ICourseRepository _courseRepository;
+
+        public CourseUpdateCommandHandler(ICourseRepository courseRepository)
+        {
+            _courseRepository = courseRepository;
+        }
+
+        public Task<bool> Handle(UpdateCourseCommand request, CancellationToken cancellationToken)
+        {
+            var existingItem = _courseRepository.GetCourse(request.Id);
+            //NOW UPDATE
+            existingItem.Description = request.Description;
+            existingItem.Name = request.Name;
+            existingItem.ImageUrl = request.ImageUrl;
+
+            //additional business logic goes here about who to notify that a course was added
+            _courseRepository.UpdateCourse(existingItem);
+
+            return Task.FromResult(true);
+        }
+    }
+
+    public class CourseDeleteCommandHandler : IRequestHandler<DeleteCourseCommand, bool>
+    {
+        //add repo
+        private readonly ICourseRepository _courseRepository;
+
+        public CourseDeleteCommandHandler(ICourseRepository courseRepository)
+        {
+            _courseRepository = courseRepository;
+        }
+
+        public Task<bool> Handle(DeleteCourseCommand request, CancellationToken cancellationToken)
+        {
+            //additional business logic goes here about who to notify that a course was added
+            _courseRepository.DeleteCourse(request.Id);
+
+            return Task.FromResult(true);
+        }
+    }
+
+
 }
+
+
