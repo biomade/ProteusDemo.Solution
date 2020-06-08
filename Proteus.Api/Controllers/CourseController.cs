@@ -24,7 +24,7 @@ namespace Proteus.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-           IEnumerable<CourseViewModel> courseViewModel =_courseService.GetCourses();
+           IEnumerable<CourseViewModel> courseViewModel = (IEnumerable<CourseViewModel>)_courseService.GetCourses();
             return Ok(courseViewModel);
         }
 

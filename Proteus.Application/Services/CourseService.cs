@@ -8,7 +8,9 @@ using Proteus.Domain.Entities;
 using Proteus.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Proteus.Application.Services
 {
@@ -30,9 +32,10 @@ namespace Proteus.Application.Services
             _bus.SendCommand(_autoMapper.Map<CreateCourseCommand>(courseViewModel));
         }
 
-        public IEnumerable<CourseViewModel> GetCourses()
+        public Task<IEnumerable<CourseViewModel>> GetCourses()
         {
-            return _CourseRepository.GetCourses().ProjectTo<CourseViewModel>(_autoMapper.ConfigurationProvider);
+            var result = _CourseRepository.GetCourses().ProjectTo<CourseViewModel>(_autoMapper.ConfigurationProvider);
+            return (Task<IEnumerable<CourseViewModel>>)result;
         }
 
         public CourseViewModel GetCourse(CourseViewModel courseViewModel)

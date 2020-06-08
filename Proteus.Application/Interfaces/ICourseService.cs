@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Proteus.Application.Interfaces
 {
     public interface ICourseService
     {
         //this VM returns an IEnumerable
-        IEnumerable<CourseViewModel> GetCourses();
+        Task<IEnumerable<CourseViewModel>> GetCourses();
 
         CourseViewModel GetCourse(CourseViewModel courseViewModel);
         void Create(CourseViewModel courseViewModel);

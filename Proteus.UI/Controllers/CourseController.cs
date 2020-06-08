@@ -17,9 +17,9 @@ namespace Proteus.UI.Controllers
             _courseService = courseService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(_courseService.GetCourses());
+            return  View(await _courseService.GetCourses());
         }
 
         public ActionResult Details(int? id)
