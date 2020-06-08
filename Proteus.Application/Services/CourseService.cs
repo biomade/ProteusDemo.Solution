@@ -3,7 +3,6 @@ using AutoMapper.QueryableExtensions;
 using Proteus.Application.Interfaces;
 using Proteus.Application.ViewModels;
 using Proteus.Domain.Commands;
-using Proteus.Domain.Core.Bus;
 using Proteus.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -19,14 +18,12 @@ namespace Proteus.Application.Services
     public class CourseService : ICourseService
     {
         private readonly ICourseRepository _CourseRepository;
-        private readonly IMediatorHandler _bus;
         private readonly IMapper _autoMapper;
         private readonly IMediator _mediator;
 
-        public CourseService(ICourseRepository courseRepository, IMediator mediator, IMediatorHandler bus, IMapper autoMapper)
+        public CourseService(ICourseRepository courseRepository, IMediator mediator, IMapper autoMapper)
         {
             _CourseRepository = courseRepository;
-            _bus = bus;
             _autoMapper = autoMapper;
             _mediator = mediator;
         }
@@ -49,8 +46,7 @@ namespace Proteus.Application.Services
 
         public async Task Create(CourseViewModel courseViewModel)
         {
-            //await _mediator.Send(_autoMapper.Map<CreateCourseCommand>(courseViewModel));
-            await  _bus.SendCommand(_autoMapper.Map<CreateCourseCommand>(courseViewModel));
+            await _mediator.Send(_autoMapper.Map<CreateCourseCommand>(courseViewModel));            
         }
 
 
@@ -64,14 +60,11 @@ namespace Proteus.Application.Services
             //    courseViewModel.Description,
             //    courseViewModel.ImageUrl
             //    );
-            //_bus.SendCommand(updateCourseCommand);
-            //await _bus.SendCommand(_autoMapper.Map<UpdateCourseCommand>(courseViewModel));
             await _mediator.Send(_autoMapper.Map<UpdateCourseCommand>(courseViewModel));
         }
 
         public async Task Delete(CourseViewModel courseViewModel)
         {
-            //await _bus.SendCommand(_autoMapper.Map<DeleteCourseCommand>(courseViewModel));
             await _mediator.Send(_autoMapper.Map<DeleteCourseCommand>(courseViewModel));
         }
 

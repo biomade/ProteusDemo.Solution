@@ -4,12 +4,10 @@ using Proteus.Application.Interfaces;
 using Proteus.Application.Services;
 using Proteus.Domain.CommandHandlers;
 using Proteus.Domain.Commands;
-using Proteus.Domain.Core.Bus;
 using Proteus.Domain.Entities;
 using Proteus.Domain.Interfaces;
 using Proteus.Domain.Queries;
 using Proteus.Domain.QueryHandlers;
-using Proteus.Infra.Bus;
 using Proteus.Infra.Data.Context;
 using Proteus.Infra.Data.Repositories;
 using System;
@@ -22,9 +20,6 @@ namespace Proteus.Infra.IoC
     {
         public static void RegisterServices(IServiceCollection services)
         {
-            //Domain InMemoryBus with MediatR
-            services.AddScoped<IMediatorHandler, InMemoryBus>();
-
             //Domain Command Handlers
             services.AddScoped<IRequestHandler<CreateCourseCommand, bool>, CreateCourseCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateCourseCommand, bool>, UpdateCourseCommandHandler>();

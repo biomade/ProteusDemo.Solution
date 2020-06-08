@@ -29,10 +29,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proteus.Api", "Proteus.Api\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proteus.Domain.Core", "Proteus.Domain.Core\Proteus.Domain.Core.csproj", "{024EBADE-7013-4DED-BB4C-A6A9775679BE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure.Bus", "Infrastructure.Bus", "{A7C547A7-61B9-4725-9FDB-08B7D939A390}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proteus.Infra.Bus", "Proteus.Infra.Bus\Proteus.Infra.Bus.csproj", "{E23905E2-3D93-444B-8E98-AD36BC6AF0E8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Documents", "_Documents", "{F291E2B0-8B53-42F4-B359-DFFDF22945F2}"
 	ProjectSection(SolutionItems) = preProject
 		ReadMe.txt = ReadMe.txt
@@ -72,10 +68,6 @@ Global
 		{024EBADE-7013-4DED-BB4C-A6A9775679BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{024EBADE-7013-4DED-BB4C-A6A9775679BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{024EBADE-7013-4DED-BB4C-A6A9775679BE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E23905E2-3D93-444B-8E98-AD36BC6AF0E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E23905E2-3D93-444B-8E98-AD36BC6AF0E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E23905E2-3D93-444B-8E98-AD36BC6AF0E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E23905E2-3D93-444B-8E98-AD36BC6AF0E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,7 +80,6 @@ Global
 		{09C18374-E93F-415E-8372-02BFAD22C754} = {B44F96A8-0B35-4BE6-A476-96A323A686A0}
 		{DFE2C75B-C3AA-4B97-B2C1-1D043679A518} = {9E4F68E7-8A4F-49A3-8941-A597F8EDE092}
 		{024EBADE-7013-4DED-BB4C-A6A9775679BE} = {165EB170-E9F7-4A78-B46F-BD4E18D840CE}
-		{E23905E2-3D93-444B-8E98-AD36BC6AF0E8} = {A7C547A7-61B9-4725-9FDB-08B7D939A390}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2D6C9124-F89F-45E1-BC84-B3527B749177}
