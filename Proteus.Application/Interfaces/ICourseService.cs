@@ -11,9 +11,9 @@ namespace Proteus.Application.Interfaces
         //this VM returns an IEnumerable
         Task<IEnumerable<CourseViewModel>> GetCourses();
 
-        CourseViewModel GetCourse(CourseViewModel courseViewModel);
-        void Create(CourseViewModel courseViewModel);
-        void Update(CourseViewModel courseViewModel);
-        void Delete(CourseViewModel courseViewModel);
+        Task<CourseViewModel> GetCourse(CourseViewModel courseViewModel);
+        Task Create(CourseViewModel courseViewModel);
+        Task Update(CourseViewModel courseViewModel);
+        Task Delete(CourseViewModel courseViewModel);
     }
 }

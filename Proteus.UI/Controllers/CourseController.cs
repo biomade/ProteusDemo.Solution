@@ -22,14 +22,14 @@ namespace Proteus.UI.Controllers
             return  View(await _courseService.GetCourses());
         }
 
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var course = _courseService.GetCourse(new CourseViewModel {Id = (int)id });
+            var course = await _courseService.GetCourse(new CourseViewModel {Id = (int)id });
             if (course == null)
             {
                 return NotFound();
@@ -45,24 +45,24 @@ namespace Proteus.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Name,Description,ImageUrl")] CourseViewModel course)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,ImageUrl")] CourseViewModel course)
         {
             if (ModelState.IsValid)
             {
-                _courseService.Create(course);
+                await _courseService.Create(course);
                 return RedirectToAction(nameof(Index));
             }
             return View(course);
         }
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var course = _courseService.GetCourse(new CourseViewModel { Id = (int)id });
+            var course = await _courseService.GetCourse(new CourseViewModel { Id = (int)id });
             if (course == null)
             {
                 return NotFound();
@@ -72,7 +72,7 @@ namespace Proteus.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Name,Description,ImageUrl")] CourseViewModel course)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,ImageUrl")] CourseViewModel course)
         {
             if (id != course.Id)
             {
@@ -81,20 +81,20 @@ namespace Proteus.UI.Controllers
 
             if (ModelState.IsValid)
             {
-                _courseService.Update(course);                
+               await _courseService.Update(course);                
                 return RedirectToAction(nameof(Index));
             }
             return View(course);
         }
 
         // GET: Courses2/Delete/5
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var course = _courseService.GetCourse(new CourseViewModel { Id = (int)id });
+            var course =await _courseService.GetCourse(new CourseViewModel { Id = (int)id });
             if (course == null)
             {
                 return NotFound();
@@ -105,10 +105,10 @@ namespace Proteus.UI.Controllers
         // POST: Courses2/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             
-            _courseService.Delete(new CourseViewModel { Id = (int)id });
+            await _courseService.Delete(new CourseViewModel { Id = (int)id });
             return RedirectToAction(nameof(Index));
         }
     }

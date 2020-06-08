@@ -27,25 +27,25 @@ namespace Proteus.Application.Services
             _autoMapper = autoMapper;
         }
 
-        public void Create(CourseViewModel courseViewModel)
+        public async Task Create(CourseViewModel courseViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<CreateCourseCommand>(courseViewModel));
+           await  _bus.SendCommand(_autoMapper.Map<CreateCourseCommand>(courseViewModel));
         }
 
-        public Task<IEnumerable<CourseViewModel>> GetCourses()
+        public async Task<IEnumerable<CourseViewModel>> GetCourses()
         {
             var result = _CourseRepository.GetCourses().ProjectTo<CourseViewModel>(_autoMapper.ConfigurationProvider);
-            return (Task<IEnumerable<CourseViewModel>>)result;
+            return await Task.FromResult<IEnumerable<CourseViewModel>>(result); 
         }
 
-        public CourseViewModel GetCourse(CourseViewModel courseViewModel)
+        public async Task<CourseViewModel> GetCourse(CourseViewModel courseViewModel)
         {
             var course = _CourseRepository.GetCourse(courseViewModel.Id);
-            var coursevm = _autoMapper.Map<CourseViewModel>(course);
-            return coursevm;
+            CourseViewModel result = _autoMapper.Map<CourseViewModel>(course);
+            return await Task.FromResult<CourseViewModel>(result); 
         }
 
-        public void Update(CourseViewModel courseViewModel)
+        public async Task Update(CourseViewModel courseViewModel)
         {
             //uses mediatr command
            // replaced with automapper
@@ -56,12 +56,12 @@ namespace Proteus.Application.Services
             //    courseViewModel.ImageUrl
             //    );
             //_bus.SendCommand(updateCourseCommand);
-            _bus.SendCommand(_autoMapper.Map<UpdateCourseCommand>(courseViewModel));  
+            await _bus.SendCommand(_autoMapper.Map<UpdateCourseCommand>(courseViewModel));  
         }
 
-        public void Delete(CourseViewModel courseViewModel)
+        public async Task Delete(CourseViewModel courseViewModel)
         {
-            _bus.SendCommand(_autoMapper.Map<DeleteCourseCommand>(courseViewModel));
+            await _bus.SendCommand(_autoMapper.Map<DeleteCourseCommand>(courseViewModel));
         }
 
     }
