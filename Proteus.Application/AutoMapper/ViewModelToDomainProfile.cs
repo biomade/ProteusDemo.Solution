@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Proteus.Application.ViewModels;
 using Proteus.Domain.Commands;
+using Proteus.Domain.Queries;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,6 +21,9 @@ namespace Proteus.Application.AutoMapper
 
             CreateMap<CourseViewModel, DeleteCourseCommand>()
                .ConvertUsing(c => new DeleteCourseCommand(c.Id));
+
+            CreateMap<CourseViewModel, GetCoursesQuery>()
+              .ConvertUsing(c => new GetCoursesQuery());
         }
     }
 }

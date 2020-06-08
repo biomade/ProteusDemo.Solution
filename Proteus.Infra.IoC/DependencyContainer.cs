@@ -5,7 +5,10 @@ using Proteus.Application.Services;
 using Proteus.Domain.CommandHandlers;
 using Proteus.Domain.Commands;
 using Proteus.Domain.Core.Bus;
+using Proteus.Domain.Entities;
 using Proteus.Domain.Interfaces;
+using Proteus.Domain.Queries;
+using Proteus.Domain.QueryHandlers;
 using Proteus.Infra.Bus;
 using Proteus.Infra.Data.Context;
 using Proteus.Infra.Data.Repositories;
@@ -22,10 +25,13 @@ namespace Proteus.Infra.IoC
             //Domain InMemoryBus with MediatR
             services.AddScoped<IMediatorHandler, InMemoryBus>();
 
-            //Domain Handlers
-            services.AddScoped<IRequestHandler<CreateCourseCommand, bool>, CourseCreateCommandHandler>();
-            services.AddScoped<IRequestHandler<UpdateCourseCommand, bool>, CourseUpdateCommandHandler>();
-            services.AddScoped<IRequestHandler<DeleteCourseCommand, bool>, CourseDeleteCommandHandler>();
+            //Domain Command Handlers
+            services.AddScoped<IRequestHandler<CreateCourseCommand, bool>, CreateCourseCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateCourseCommand, bool>, UpdateCourseCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteCourseCommand, bool>, DeleteCourseCommandHandler>();
+
+            //Domain Query Handlers
+            services.AddScoped<IRequestHandler<GetCoursesQuery, IEnumerable<Course>>, GetCoursesQueryHandler>();
 
             //application layer
             services.AddScoped<ICourseService, CourseService>();

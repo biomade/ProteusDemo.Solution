@@ -4,13 +4,15 @@ using Proteus.Application.Interfaces;
 using Proteus.Application.ViewModels;
 using Proteus.Domain.Commands;
 using Proteus.Domain.Core.Bus;
-using Proteus.Domain.Entities;
 using Proteus.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MediatR;
+using Proteus.Domain.Queries;
+using Proteus.Domain.Entities;
 
 namespace Proteus.Application.Services
 {
@@ -19,23 +21,22 @@ namespace Proteus.Application.Services
         private readonly ICourseRepository _CourseRepository;
         private readonly IMediatorHandler _bus;
         private readonly IMapper _autoMapper;
+        private readonly IMediator _mediator;
 
-        public CourseService(ICourseRepository courseRepository, IMediatorHandler bus, IMapper autoMapper)
+        public CourseService(ICourseRepository courseRepository, IMediator mediator, IMediatorHandler bus, IMapper autoMapper)
         {
             _CourseRepository = courseRepository;
             _bus = bus;
             _autoMapper = autoMapper;
-        }
-
-        public async Task Create(CourseViewModel courseViewModel)
-        {
-           await  _bus.SendCommand(_autoMapper.Map<CreateCourseCommand>(courseViewModel));
+            _mediator = mediator;
         }
 
         public async Task<IEnumerable<CourseViewModel>> GetCourses()
         {
-            var result = _CourseRepository.GetCourses().ProjectTo<CourseViewModel>(_autoMapper.ConfigurationProvider);
-            return await Task.FromResult<IEnumerable<CourseViewModel>>(result); 
+            CourseViewModel vm = new CourseViewModel();
+            var result =  await _mediator.Send(_autoMapper.Map<GetCoursesQuery>(vm));
+            //convert back to view models
+            return await Task.FromResult(_autoMapper.Map<IEnumerable<Course>, IEnumerable<CourseViewModel>>(result));
         }
 
         public async Task<CourseViewModel> GetCourse(CourseViewModel courseViewModel)
@@ -44,6 +45,14 @@ namespace Proteus.Application.Services
             CourseViewModel result = _autoMapper.Map<CourseViewModel>(course);
             return await Task.FromResult<CourseViewModel>(result); 
         }
+
+
+        public async Task Create(CourseViewModel courseViewModel)
+        {
+            //await _mediator.Send(_autoMapper.Map<CreateCourseCommand>(courseViewModel));
+            await  _bus.SendCommand(_autoMapper.Map<CreateCourseCommand>(courseViewModel));
+        }
+
 
         public async Task Update(CourseViewModel courseViewModel)
         {
@@ -56,12 +65,14 @@ namespace Proteus.Application.Services
             //    courseViewModel.ImageUrl
             //    );
             //_bus.SendCommand(updateCourseCommand);
-            await _bus.SendCommand(_autoMapper.Map<UpdateCourseCommand>(courseViewModel));  
+            //await _bus.SendCommand(_autoMapper.Map<UpdateCourseCommand>(courseViewModel));
+            await _mediator.Send(_autoMapper.Map<UpdateCourseCommand>(courseViewModel));
         }
 
         public async Task Delete(CourseViewModel courseViewModel)
         {
-            await _bus.SendCommand(_autoMapper.Map<DeleteCourseCommand>(courseViewModel));
+            //await _bus.SendCommand(_autoMapper.Map<DeleteCourseCommand>(courseViewModel));
+            await _mediator.Send(_autoMapper.Map<DeleteCourseCommand>(courseViewModel));
         }
 
     }

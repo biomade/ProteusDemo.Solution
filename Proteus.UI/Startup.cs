@@ -49,7 +49,9 @@ namespace Proteus.UI
 
             //our registrations for Automapper, Mediator and IoC
 
-            services.AddMediatR(typeof(Startup));
+            //services.AddMediatR(typeof(Startup));
+            var assembly = AppDomain.CurrentDomain.Load("Proteus.Infra.IoC");
+            services.AddMediatR(assembly);
 
             services.RegisterAutoMapper();
 
