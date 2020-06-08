@@ -26,6 +26,7 @@
             <div class="form-group">
                 <label asp-for="ImageUrl" class="control-label"></label>
                 <input asp-for="ImageUrl" class="form-control" />
+                <label class="control-label">Image</label>
                 <div class="course-image" style="background-image:url(@Model.ImageUrl)">
                 </div>
                 <span asp-validation-for="ImageUrl" class="text-danger"></span>
