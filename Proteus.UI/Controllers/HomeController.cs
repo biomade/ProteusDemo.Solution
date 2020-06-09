@@ -22,7 +22,13 @@ namespace Proteus.UI.Controllers
 
         public IActionResult Index()
         {
-            _logger.LogInformation("Hello, this is the index!");
+            _logger.LogTrace(0, "Trace log");
+            _logger.LogDebug(1, "Debug Message");
+            _logger.LogInformation(2, "Information Message");
+            _logger.LogWarning(3, "Warning log");
+            _logger.LogError(4, "Error Message");
+            _logger.LogCritical(5, "Critical Message");
+
             return View();
         }
 

@@ -42,7 +42,7 @@ namespace Proteus.UI
                 .ConfigureLogging(logging =>
                 {
                     logging.ClearProviders();
-                    logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+                    logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Debug);
                 })
                 .UseNLog();  // NLog: Setup NLog for Dependency injection
     }
