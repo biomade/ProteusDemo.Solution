@@ -41,7 +41,7 @@ namespace Proteus.Api
            //add use of swagger
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Proteus Api", Version = "v1" });
+                c.SwaggerDoc("v2", new OpenApiInfo { Title = "Proteus Api", Version = "v2" });
             });
 
             //and add DI for automapper, mediatR
@@ -69,7 +69,7 @@ namespace Proteus.Api
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Proteus Api V1");
+                c.SwaggerEndpoint("/swagger/v2/swagger.json", "Proteus Api V2");
             });
 
             app.UseRouting();
