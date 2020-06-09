@@ -41,12 +41,14 @@ namespace Proteus.Api
            //add use of swagger
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "University Api", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Proteus Api", Version = "v1" });
             });
 
             //and add DI for automapper, mediatR
+            //services.AddMediatR(typeof(Startup));
+            var assembly = AppDomain.CurrentDomain.Load("Proteus.Infra.IoC");
+            services.AddMediatR(assembly);
 
-            services.AddMediatR(typeof(Startup));
             services.RegisterAutoMapper();
 
 
