@@ -27,6 +27,7 @@ namespace Proteus.Infra.IoC
 
             //Domain Query Handlers
             services.AddScoped<IRequestHandler<GetCoursesQuery, IEnumerable<Course>>, GetCoursesQueryHandler>();
+            services.AddScoped<IRequestHandler<GetCourseByIdQuery, Course>, GetCourseByIdQueryHandler>();
 
             //application layer
             services.AddScoped<ICourseService, CourseService>();

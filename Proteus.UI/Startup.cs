@@ -51,6 +51,7 @@ namespace Proteus.UI
 
             //services.AddMediatR(typeof(Startup));
             var assembly = AppDomain.CurrentDomain.Load("Proteus.Infra.IoC");
+            
             services.AddMediatR(assembly);
 
             services.RegisterAutoMapper();

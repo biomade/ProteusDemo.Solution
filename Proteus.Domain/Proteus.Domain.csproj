@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Commands\CourseCommand.cs" />
+    <Compile Remove="Queries\CourseQuery.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Proteus.Domain.Core\Proteus.Domain.Core.csproj" />
   </ItemGroup>
 

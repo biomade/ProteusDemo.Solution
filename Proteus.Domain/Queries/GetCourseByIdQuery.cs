@@ -4,14 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Proteus.Domain.Commands
+namespace Proteus.Domain.Queries
 {
-    public class DeleteCourseCommand:  IRequest<bool>
+    public class GetCourseByIdQuery : IRequest<Course>
     {
-
         public int Id { get; protected set; }
-       
-        public DeleteCourseCommand(int id)
+        public GetCourseByIdQuery(int id)
         {
             Id = id;
         }

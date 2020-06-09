@@ -31,15 +31,18 @@ namespace Proteus.Application.Services
         public async Task<IEnumerable<CourseViewModel>> GetCourses()
         {
             CourseViewModel vm = new CourseViewModel();
-            var result =  await _mediator.Send(_autoMapper.Map<GetCoursesQuery>(vm));
+            IEnumerable<Course> result = (IEnumerable<Course>)await _mediator.Send(_autoMapper.Map<GetCoursesQuery>(vm));
             //convert back to view models
             return await Task.FromResult(_autoMapper.Map<IEnumerable<Course>, IEnumerable<CourseViewModel>>(result));
         }
 
         public async Task<CourseViewModel> GetCourse(CourseViewModel courseViewModel)
         {
-            var course = _CourseRepository.GetCourse(courseViewModel.Id);
-            CourseViewModel result = _autoMapper.Map<CourseViewModel>(course);
+            //convert 
+            var q = _autoMapper.Map<GetCourseByIdQuery>(courseViewModel);
+            var course = _mediator.Send(q);
+            //var course = _CourseRepository.GetCourse(courseViewModel.Id);
+            CourseViewModel result = _autoMapper.Map<CourseViewModel>(course.Result);
             return await Task.FromResult<CourseViewModel>(result); 
         }
 

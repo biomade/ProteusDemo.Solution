@@ -24,6 +24,9 @@ namespace Proteus.Application.AutoMapper
 
             CreateMap<CourseViewModel, GetCoursesQuery>()
               .ConvertUsing(c => new GetCoursesQuery());
+
+            CreateMap<CourseViewModel, GetCourseByIdQuery>()
+             .ConvertUsing(c => new GetCourseByIdQuery(c.Id));
         }
     }
 }
