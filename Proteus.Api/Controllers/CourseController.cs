@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Proteus.Application.Interfaces;
 using Proteus.Application.ViewModels;
 
@@ -14,10 +15,14 @@ namespace Proteus.Api.Controllers
     public class CourseController : ControllerBase
     {
         private readonly ICourseService _courseService;
+        private readonly ILogger<CourseController> _logger;
 
-        public CourseController(ICourseService courseService)
+
+        public CourseController(ICourseService courseService, ILogger<CourseController> logger)
         {
             _courseService = courseService;
+            _logger = logger;
+            _logger.LogDebug(1, "NLog injected into CourseController");
         }
 
         // GET: api/<CourseController>
