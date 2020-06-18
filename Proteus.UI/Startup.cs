@@ -96,6 +96,7 @@ namespace Proteus.UI
         private static void RegisterServices(IServiceCollection services)
         {
             DependencyContainer.RegisterServices(services);
+
         }
     }
 }
